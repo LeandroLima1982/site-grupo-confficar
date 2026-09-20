@@ -1,0 +1,8 @@
+﻿{
+  "name": "Confficar",
+  "description": "Plataforma de mobilidade executiva e sistema de gerenciamento de conteúdo e reservas",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

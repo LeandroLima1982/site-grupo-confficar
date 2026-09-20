@@ -1,0 +1,36 @@
+{
+  "entities": {
+    "cms_settings": {
+      "title": "CMS Settings",
+      "description": "Global CMS content and settings for the client website",
+      "properties": {
+        "logos": { "type": "object", "description": "Site logos" },
+        "institutional": { "type": "object", "description": "Institutional texts and hero content" },
+        "banners": { "type": "array", "description": "Banners" },
+        "services": { "type": "array", "description": "Services list" },
+        "fleet": { "type": "array", "description": "Fleet items" },
+        "testimonials": { "type": "array", "description": "Testimonials" },
+        "seo": { "type": "object", "description": "SEO meta settings" },
+        "cmsUsers": { "type": "array", "description": "CMS User Accounts" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      },
+      "required": ["updatedAt"]
+    },
+    "cms_users": {
+      "title": "CMS Users",
+      "description": "CMS user profiles and permissions. Passwords are managed by Firebase Authentication.",
+      "properties": {
+        "id": { "type": "string", "description": "Firebase Authentication UID" },
+        "name": { "type": "string", "description": "Display name" },
+        "email": { "type": "string", "description": "Login email" },
+        "password": { "type": "string", "description": "Always empty; password is stored by Firebase Authentication" },
+        "isSuperAdmin": { "type": "boolean", "description": "Whether the profile has full CMS access" },
+        "active": { "type": "boolean", "description": "Whether the profile may access the CMS" },
+        "allowedSections": { "type": "array", "description": "CMS sections available to the user" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" },
+        "lastLogin": { "type": "string", "description": "Last login timestamp" }
+      },
+      "required": ["id", "email", "active"]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+﻿rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSuperAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'transporteapp.com.br@gmail.com'
+        ];
+    }
+
+    function isCMSContentEditor() {
+      return request.auth != null;
+    }
+
+    match /cms_settings/{document} {
+      allow read: if true;
+      allow write: if isCMSContentEditor();
+    }
+
+    match /cms_users/{userId} {
+      allow read: if isSuperAdmin()
+        || (request.auth != null && request.auth.uid == userId);
+      allow write: if isSuperAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
