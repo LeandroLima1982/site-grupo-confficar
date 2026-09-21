@@ -179,7 +179,7 @@ const HeroCtaResponsivePreview: React.FC<HeroCtaResponsivePreviewProps> = ({ sli
                       transform: `translate(${anchor.translateX}, ${anchor.translateY})`,
                     }}
                   >
-                    {slide.ctaText || 'Solicitar Transporte'}
+                    {slide.ctaText || 'Solicitar Orçamento'}
                   </button>
                 ) : (
                   <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-white/70">CTA desativado</span>
@@ -4165,7 +4165,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                         <div className="flex items-center justify-between">
                           <label className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
                             <span className="material-symbols-outlined text-gold-600 text-sm">ads_click</span>
-                            Botão CTA (Solicitar Transporte)
+                            Botão CTA (Solicitar Orçamento)
                           </label>
                           <label className="flex items-center gap-1.5 text-[10px] font-bold text-slate-600 cursor-pointer">
                             <input
@@ -4182,7 +4182,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                           <label className="block text-[10px] font-bold text-slate-600 mb-1">Texto do botão</label>
                           <input
                             type="text"
-                            value={slide.ctaText || 'Solicitar Transporte'}
+                            value={slide.ctaText || 'Solicitar Orçamento'}
                             onChange={(e) => handleUpdateHeroSlide(slide.id, 'ctaText', e.target.value)}
                             className="w-full border border-slate-200 rounded px-2 py-1 text-[10px] text-slate-900 outline-none focus:border-gold-500"
                           />

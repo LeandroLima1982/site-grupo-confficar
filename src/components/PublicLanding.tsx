@@ -848,10 +848,10 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                       ? 'bg-white/20 hover:bg-white/35 text-white border border-white/50 backdrop-blur-md hover:border-white shadow-lg'
                       : 'bg-gold-500 hover:bg-gold-400 text-white border-gold-600/30 shadow-gold-600/25'
                 }`}
-                title="Solicitar Transporte"
+                title="Solicitar Orçamento"
               >
                 <span className="material-symbols-outlined mr-1.5 text-[18px]">calculate</span>
-                <span>Solicitar Transporte</span>
+                <span>Solicitar Orçamento</span>
               </button>
             </div>
 
@@ -1424,7 +1424,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                     >
                       <span className="absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                       <span className="material-symbols-outlined text-[20px]">calculate</span>
-                      <span>{currentSlide.ctaText || 'Solicitar Transporte'}</span>
+                      <span>{currentSlide.ctaText || 'Solicitar Orçamento'}</span>
                       <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
                     </button>
                     </motion.div>
@@ -1682,7 +1682,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                     <div>
                       <h3 className="text-2xl font-bold flex items-center gap-2.5">
                         <span className={`material-symbols-outlined text-2xl ${isDark ? `text-gold-400` : `text-[#0A0A0A]`}`}>calendar_clock</span>
-                        <span>Solicitar Transporte</span>
+                        <span>Solicitar Orçamento</span>
                       </h3>
                       <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                         Informe os dados da sua rota para receber o valor calculado
