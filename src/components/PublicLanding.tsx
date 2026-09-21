@@ -339,8 +339,8 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
 
   // Quote form state
   const [quote, setQuote] = useState<QuoteForm>({
-    origem: 'Aeroporto de Guarulhos (GRU)',
-    destino: 'Av. Faria Lima, São Paulo',
+    origem: 'Heliporto de Farol de São Thomé',
+    destino: 'Aeroporto Santos Dumont',
     dataHora: new Date(Date.now() + 86400000).toISOString().slice(0, 16),
     passageiros: '1 a 3 Passageiros',
     veiculo: fleet[0]?.nome || 'Toyota Corolla 2025',
@@ -657,8 +657,8 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
 
     setCalculatedQuote({
       showModal: true,
-      origem: quote.origem || 'Aeroporto de Guarulhos (GRU)',
-      destino: quote.destino || 'Av. Faria Lima, São Paulo',
+      origem: quote.origem || 'Heliporto de Farol de São Thomé',
+      destino: quote.destino || 'Aeroporto Santos Dumont',
       dataHora: quote.dataHora.replace('T', ' '),
       veiculoNome: vNome,
       passageiros: quote.passageiros,
@@ -1784,7 +1784,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                               type="text"
                               value={quote.origem}
                               onChange={(e) => setQuote({ ...quote, origem: e.target.value })}
-                              placeholder="Aeroporto de Guarulhos (GRU)"
+                              placeholder="Heliporto de Farol de São Thomé"
                               className={`w-full bg-transparent border-none p-0 text-sm focus:ring-0 outline-none ${
                                 isDark ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'
                               }`}
@@ -1810,7 +1810,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                               type="text"
                               value={quote.destino}
                               onChange={(e) => setQuote({ ...quote, destino: e.target.value })}
-                              placeholder="Av. Faria Lima, São Paulo"
+                              placeholder="Aeroporto Santos Dumont"
                               className={`w-full bg-transparent border-none p-0 text-sm focus:ring-0 outline-none ${
                                 isDark ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'
                               }`}
@@ -2131,7 +2131,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                                         : 'bg-gold-500 hover:bg-gold-400 text-white'
                                     }`}
                                   >
-                                    <span>Solicitar Cotação</span>
+                                    <span>Solicitar agora</span>
                                     <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
                                   </a>
                                 </div>
@@ -2267,7 +2267,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                                       : 'bg-gold-500 hover:bg-gold-400 text-white'
                                   }`}
                                 >
-                                  <span>Solicitar Cotação</span>
+                                  <span>Solicitar agora</span>
                                   <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
                                 </a>
                               </div>
