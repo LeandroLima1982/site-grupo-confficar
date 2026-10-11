@@ -280,7 +280,27 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
     return fleetList[0].nome;
   };
 
-  // Handler para direcionamento imediato ao formulário próprio de cotação (#cotacao-form)
+  // Tenant do widget embed B2C (TransporteApp) definido no script do index.html
+  const QUOTE_WIDGET_TENANT = 'conffidriver';
+
+  // Aciona o widget embed B2C em modal. Retorna false se o script ainda nao carregou.
+  const openB2CQuoteWidget = (): boolean => {
+    const api = (window as unknown as {
+      TransporteQuote?: { open?: (slug?: string) => void };
+    }).TransporteQuote;
+    if (api && typeof api.open === 'function') {
+      try {
+        api.open(QUOTE_WIDGET_TENANT);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  };
+
+  // Handler dos CTAs de orcamento/cotacao: aciona o widget embed B2C.
+  // Fallback (se o script nao carregou): rola ate o formulario nativo (#cotacao-form).
   const handleRequestQuoteDirectly = (veiculoKey?: string, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
 
@@ -290,9 +310,12 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
     }
 
     setMobileMenuOpen(false);
+    setSelectedServiceModal(null);
     setSelectedVehicleModal(null);
 
-    // Scroll suave direcionado exatamente para o cartão do formulário de cotação considerando a altura da barra superior
+    if (openB2CQuoteWidget()) return;
+
+    // Fallback: scroll suave para o cartao do formulario de cotacao considerando a altura da barra superior
     const targetEl = document.getElementById('cotacao-form') || document.getElementById('cotacao');
     if (targetEl) {
       const headerEl = document.getElementById('main-header');
