@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CMSUser, AdminSection } from '../types';
 import {
   createCMSUserAccount,
@@ -468,7 +468,7 @@ export const UserManagement: React.FC<UserManagementProps> = ({ isDark = false }
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value.trim() })}
                     disabled={Boolean(editingUser)}
-                    placeholder="Ex: carlos@grupoconficar.com.br"
+                    placeholder="Ex: carlos@grupoconfficar.com.br"
                     className={`w-full px-3 py-2 rounded-xl border text-xs font-mono font-medium outline-none ${inputBgClass}`}
                   />
                   {editingUser && (

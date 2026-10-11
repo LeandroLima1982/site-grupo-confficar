@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ASSET_IMAGES } from '../data/initialData';
 import { SiteLogos, UserRole, ViewMode } from '../types';
 import { DEFAULT_SUPERADMIN, getLoggedCMSUser, setLoggedCMSUser } from '../lib/cmsAuth';
@@ -18,7 +18,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   onLoginSuccess,
   onViewChange,
 }) => {
-  const [username, setUsername] = useState('admin@grupoconficar.com.br');
+  const [username, setUsername] = useState('admin@grupoconfficar.com.br');
   const [password, setPassword] = useState('••••••••');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -34,11 +34,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const handleRoleSelect = (role: UserRole) => {
     onRoleChange(role);
     if (role === 'empresa') {
-      setUsername('empresa.diretoria@grupoconficar.com.br');
+      setUsername('empresa.diretoria@grupoconfficar.com.br');
     } else if (role === 'motorista') {
-      setUsername('motorista.bilingue@grupoconficar.com.br');
+      setUsername('motorista.bilingue@grupoconfficar.com.br');
     } else {
-      setUsername('equipe.operacoes@grupoconficar.com.br');
+      setUsername('equipe.operacoes@grupoconfficar.com.br');
     }
   };
 
@@ -212,13 +212,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               <a
-                href="https://app.grupoconficar.com.br"
+                href="https://app.grupoconfficar.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#0A0A0A] text-white hover:bg-[#1A1A1A] px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition-all cursor-pointer flex items-center gap-1 shadow-xs"
               >
                 <span className="material-symbols-outlined text-[14px]">travel_explore</span>
-                <span>Subdomínio app.grupoconficar.com.br</span>
+                <span>Subdomínio app.grupoconfficar.com.br</span>
                 <span className="material-symbols-outlined text-[12px]">open_in_new</span>
               </a>
               <button

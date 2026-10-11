@@ -1,4 +1,4 @@
-﻿import { BannerItem, FleetItem, InstitutionalContent, ServiceItem, SiteLogos, TestimonialItem, SEOSettings } from '../types';
+import { BannerItem, FleetItem, InstitutionalContent, ServiceItem, SiteLogos, TestimonialItem, SEOSettings } from '../types';
 
 export const ASSET_IMAGES = {
   logoHeader: '/logo-header.png',
@@ -305,7 +305,7 @@ export const INITIAL_INSTITUTIONAL: InstitutionalContent = {
   },
   telefone: '(22) 99918-8888',
   whatsappUrl: 'https://wa.me/5522999188888',
-  email: 'contato@grupoconficar.com.br',
+  email: 'contato@grupoconfficar.com.br',
   endereco: 'Rio de Janeiro - RJ',
   defaultSiteTheme: 'light',
 };
@@ -323,7 +323,7 @@ export const INITIAL_SEO: SEOSettings = {
     'confficar transporte',
     'transfer galeao'
   ],
-  canonicalUrl: 'https://grupoconficar.com.br/',
+  canonicalUrl: 'https://grupoconfficar.com.br/',
   author: 'Confficar',
   siteName: 'Confficar',
   ogTitle: 'Confficar | Transporte Executivo de Elite',
@@ -335,14 +335,14 @@ export const INITIAL_SEO: SEOSettings = {
     "@type": "TaxiService",
     "name": "Confficar",
     "description": "Serviço especializado de transporte executivo, transfer aeroportuário e frota blindada corporativa.",
-    "url": "https://grupoconficar.com.br",
+    "url": "https://grupoconfficar.com.br",
     "logo": "/logo-confficar.png",
     "areaServed": "Brasil",
     "serviceType": ["Transporte Executivo", "Transfer Aeroporto", "Veículos Blindados", "Vans Executivas"],
     "provider": {
       "@type": "LocalBusiness",
       "name": "Confficar",
-      "url": "https://grupoconficar.com.br",
+      "url": "https://grupoconfficar.com.br",
       "logo": "/logo-confficar.png",
       "telephone": "+55-22-99918-8888",
       "priceRange": "$$$"

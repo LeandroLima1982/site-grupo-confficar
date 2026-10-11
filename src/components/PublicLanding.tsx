@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ASSET_IMAGES } from '../data/initialData';
 import { FleetItem, HeroSlideItem, InstitutionalContent, QuoteForm, SEOSettings, ServiceItem, SiteLogos, TestimonialItem, ViewMode } from '../types';
@@ -834,7 +834,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
 
           {/* Trailing Action Button + Sky Toggle Switcher + Mobile Hamburger */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Solicitar Cotação Button */}
+            {/* Solicitar agora Button */}
             <div className="hidden lg:flex items-center">
               <button
                 type="button"
@@ -864,7 +864,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
               />
 
               <a
-                href="https://app.grupoconficar.com.br"
+                href="https://app.grupoconfficar.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-2 rounded-lg transition-all cursor-pointer flex items-center justify-center ${
@@ -876,7 +876,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                       ? 'text-white/80 hover:text-white hover:bg-white/10'
                       : 'text-slate-700 hover:text-[#0A0A0A] hover:bg-slate-100'
                 }`}
-                title="Acessar o Sistema Operacional de Viagens (app.grupoconficar.com.br)"
+                title="Acessar o Sistema Operacional de Viagens (app.grupoconfficar.com.br)"
               >
                 <span className="material-symbols-outlined text-[22px]">desktop_windows</span>
               </a>
@@ -1111,14 +1111,14 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                 {/* Direct Access CTAs */}
                 <div className="space-y-2">
                   <a
-                    href="https://app.grupoconficar.com.br"
+                    href="https://app.grupoconfficar.com.br"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full bg-gold-500 hover:bg-gold-400 text-white font-extrabold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[18px]">desktop_windows</span>
-                    <span>ACESSAR SISTEMA (app.grupoconficar.com.br)</span>
+                    <span>ACESSAR SISTEMA (app.grupoconfficar.com.br)</span>
                     <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                   </a>
                 </div>
@@ -2599,7 +2599,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
               <div>
                 <p className={`text-[11px] font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-[#727781]'}`}>WhatsApp Corporativo</p>
                 <a href="#cotacao" onClick={(e) => handleRequestQuoteDirectly(undefined, e)} className={`text-xs font-bold hover:underline ${isDark ? 'text-emerald-400' : 'text-emerald-800'}`}>
-                  Solicitar Cotação Direta
+                  Solicitar agora Direta
                 </a>
               </div>
             </div>
@@ -2612,7 +2612,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
               </div>
               <div>
                 <p className={`text-[11px] font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-[#727781]'}`}>E-mail Oficial</p>
-                <p className={`text-xs font-bold ${isDark ? 'text-white' : 'text-[#1c1b1b]'}`}>contato@grupoconficar.com.br</p>
+                <p className={`text-xs font-bold ${isDark ? 'text-white' : 'text-[#1c1b1b]'}`}>contato@grupoconfficar.com.br</p>
               </div>
             </div>
 
@@ -2749,7 +2749,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
               <li>
                 <a href="#cotacao" onClick={(e) => handleRequestQuoteDirectly(undefined, e)} className={`transition-colors flex items-center gap-1.5 font-bold ${isDark ? 'text-gold-400 hover:text-gold-300' : 'text-[#0A0A0A] hover:text-[#1A1A1A]'}`}>
                   <span className="material-symbols-outlined text-[14px]">calculate</span>
-                  <span>Solicitar Cotação Rápida</span>
+                  <span>Solicitar agora Rápida</span>
                 </a>
               </li>
             </ul>
@@ -2769,9 +2769,9 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
 
             {/* Agrupamento dos Botões de Acesso do mesmo lado */}
             <div className="space-y-2.5 pt-1">
-              {/* Botão 1: ACESSAR SISTEMA (app.grupoconficar.com.br) */}
+              {/* Botão 1: ACESSAR SISTEMA (app.grupoconfficar.com.br) */}
               <a
-                href="https://app.grupoconficar.com.br"
+                href="https://app.grupoconfficar.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-full inline-flex items-center justify-between gap-2 text-xs uppercase tracking-wider font-extrabold py-3 px-4 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer border ${
@@ -2779,7 +2779,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                     ? 'bg-gold-600 hover:bg-gold-500 text-white border-gold-400/40 shadow-gold-950/40'
                     : 'bg-gold-500 hover:bg-gold-400 text-white border-gold-600/30 shadow-gold-600/25'
                 }`}
-                title="Acessar o Sistema Operacional de Viagens Corporativas (app.grupoconficar.com.br)"
+                title="Acessar o Sistema Operacional de Viagens Corporativas (app.grupoconfficar.com.br)"
               >
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[18px]">desktop_windows</span>
@@ -2903,7 +2903,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
               <>
                 <div className={`flex items-center gap-2 mb-3 ${isDark ? 'text-emerald-400' : 'text-[#0A0A0A]'}`}>
                   <span className="material-symbols-outlined text-[28px]">chat</span>
-                  <h3 className="text-xl font-bold">Solicitar Cotação via WhatsApp</h3>
+                  <h3 className="text-xl font-bold">Solicitar agora via WhatsApp</h3>
                 </div>
 
                 <p className={`text-xs mb-6 ${isDark ? 'text-slate-300' : 'text-[#414750]'}`}>
@@ -2971,7 +2971,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                     className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[20px]">chat</span>
-                    <span>SOLICITAR COTAÇÃO VIA WHATSAPP</span>
+                    <span>SOLICITAR AGORA VIA WHATSAPP</span>
                   </a>
                 </div>
               </>
@@ -3176,7 +3176,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                 className="font-bold text-xs px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-white flex items-center gap-2 cursor-pointer shadow-md transition-all active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">calculate</span>
-                <span>Solicitar Cotação com Este Veículo</span>
+                <span>Solicitar agora com Este Veículo</span>
               </button>
             </div>
           </div>

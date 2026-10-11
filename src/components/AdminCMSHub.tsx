@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ASSET_IMAGES, INITIAL_SEO } from '../data/initialData';
 import { SEOManager } from './SEOManager';
 import { CloudinarySettings } from './CloudinarySettings';
@@ -1117,7 +1117,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
 
         <div className="mb-4 px-2">
           <a
-            href="https://app.grupoconficar.com.br/login"
+            href="https://app.grupoconfficar.com.br/login"
             target="_blank"
             rel="noreferrer"
             className="w-full bg-[#0A0A0A] hover:bg-[#1A1A1A] text-white font-semibold text-xs py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
@@ -1572,7 +1572,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                   </div>
                 </div>
                 <a
-                  href="https://app.grupoconficar.com.br/login"
+                  href="https://app.grupoconfficar.com.br/login"
                   target="_blank"
                   rel="noreferrer"
                   className="shrink-0 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all shadow flex items-center gap-2 cursor-pointer"
@@ -4972,7 +4972,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                     Voltar ao Site Público
                   </button>
                   <a
-                    href="https://app.grupoconficar.com.br/login"
+                    href="https://app.grupoconfficar.com.br/login"
                     target="_blank"
                     rel="noreferrer"
                     className="w-full sm:w-auto px-8 py-3 bg-[#0A0A0A] text-white font-semibold text-xs rounded-xl hover:bg-[#1A1A1A] transition-all shadow flex items-center justify-center gap-2"
@@ -5744,7 +5744,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                       type="email"
                       value={heroForm.email || ''}
                       onChange={(e) => setHeroForm({ ...heroForm, email: e.target.value })}
-                      placeholder="contato@grupoconficar.com.br"
+                      placeholder="contato@grupoconfficar.com.br"
                       className={`w-full border rounded-xl p-2.5 text-xs outline-none ${inputBgClass}`}
                     />
                   </div>
@@ -5789,7 +5789,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                 metaTitle: 'Confficar',
                 metaDescription: 'Transporte executivo e transfers VIP.',
                 keywords: ['transporte executivo', 'transfer aeroporto'],
-                canonicalUrl: 'https://grupoconficar.com.br/',
+                canonicalUrl: 'https://grupoconfficar.com.br/',
                 author: 'Confficar',
                 siteName: 'Confficar',
                 ogTitle: 'Confficar',

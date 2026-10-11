@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SEOSettings } from '../types';
 
 interface SEOManagerProps {
@@ -360,7 +360,7 @@ export const SEOManager: React.FC<SEOManagerProps> = ({ seo, onUpdateSEO, isDark
                       type="url"
                       value={form.canonicalUrl}
                       onChange={(e) => setForm({ ...form, canonicalUrl: e.target.value })}
-                      placeholder="https://grupoconficar.com.br/"
+                      placeholder="https://grupoconfficar.com.br/"
                       className={`w-full px-3.5 py-2 rounded-xl border text-xs font-medium transition-all ${inputBgClass}`}
                     />
                   </div>
@@ -636,7 +636,7 @@ export const SEOManager: React.FC<SEOManagerProps> = ({ seo, onUpdateSEO, isDark
                 </span>
                 <span className="text-slate-400 text-[10px]">›</span>
                 <span className="truncate text-slate-500 text-[11px]">
-                  {form.canonicalUrl || 'https://grupoconficar.com.br'}
+                  {form.canonicalUrl || 'https://grupoconfficar.com.br'}
                 </span>
               </div>
 
