@@ -13,6 +13,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet" />
+    <!-- Evita "flash" do nome dos ícones (ex.: light_mode) enquanto a fonte de símbolos não carrega -->
+    <style>
+      html.fonts-pending .material-symbols-outlined,
+      html.fonts-pending .material-symbols-filled {
+        visibility: hidden !important;
+      }
+    </style>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('fonts-pending');
+        var revealed = false;
+        var started = Date.now();
+        var FAMILY = 'Material Symbols Outlined';
+        function reveal() {
+          if (revealed) return;
+          revealed = true;
+          root.classList.remove('fonts-pending');
+        }
+        function hasFace() {
+          try {
+            if (!document.fonts) return false;
+            var found = false;
+            Array.prototype.forEach.call(
+              Array.from(document.fonts),
+              function (face) {
+                if (String(face.family).indexOf(FAMILY) !== -1) found = true;
+              }
+            );
+            return found;
+          } catch (e) { return false; }
+        }
+        function attempt() {
+          if (revealed) return;
+          if (Date.now() - started > 8000) { reveal(); return; }
+          if (hasFace()) {
+            var loaded = false;
+            try { loaded = document.fonts.check('24px "' + FAMILY + '"'); } catch (e) { loaded = true; }
+            if (loaded) { reveal(); return; }
+            try { document.fonts.load('24px "' + FAMILY + '"'); } catch (e) {}
+          }
+          setTimeout(attempt, 120);
+        }
+        attempt();
+      })();
+    </script>
+    <noscript>
+      <style>
+        html.fonts-pending .material-symbols-outlined { visibility: visible; }
+      </style>
+    </noscript>
   </head>
   <body class="bg-[#fcf9f8] text-[#1c1b1b] antialiased selection:bg-gold-500 selection:text-white">
     <div id="root"></div>
