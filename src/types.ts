@@ -116,7 +116,6 @@ export interface ClientPartnerItem {
   id: string;
   name: string;
   logoUrl: string;
-  logoUrlDark?: string;
   websiteUrl: string;
 }
 

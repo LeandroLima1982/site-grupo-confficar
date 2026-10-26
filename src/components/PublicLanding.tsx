@@ -2596,13 +2596,13 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                           : 'bg-[#fcf9f8] border-[#e8e4e2] hover:border-gold-400'
                       }`}
                     >
-                      <div className="h-16 w-full flex items-center justify-center">
-                        {isSafeLogoUrl(isDark && isSafeLogoUrl(item.logoUrlDark) ? item.logoUrlDark : item.logoUrl) ? (
+                      <div className={`h-16 w-full flex items-center justify-center ${isDark ? 'rounded-lg bg-white p-2' : ''}`}>
+                        {isSafeLogoUrl(item.logoUrl) ? (
                           <img
-                            src={isDark && isSafeLogoUrl(item.logoUrlDark) ? item.logoUrlDark : item.logoUrl}
+                            src={item.logoUrl}
                             alt={`Logo ${item.name}`}
                             loading="lazy"
-                            className="max-h-16 max-w-full object-contain grayscale opacity-75 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                            className={`max-h-full max-w-full object-contain transition duration-300 ${isDark ? 'opacity-100' : 'grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100'}`}
                           />
                         ) : (
                           <span className={`text-center text-lg font-extrabold ${isDark ? 'text-white' : 'text-slate-700'}`}>{item.name}</span>

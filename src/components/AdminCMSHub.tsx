@@ -5330,7 +5330,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                       };
 
                       return (
-                        <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.3fr_auto] gap-3 items-end rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr_1.4fr_auto] gap-3 items-end rounded-xl border border-slate-200 bg-slate-50 p-4">
                           <label className="text-[11px] font-bold text-slate-700">
                             Nome da empresa
                             <input
@@ -5338,16 +5338,6 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
                               value={item.name}
                               onChange={(e) => updateItem('name', e.target.value)}
                               placeholder="Ex.: Empresa Exemplo"
-                              className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
-                            />
-                          </label>
-                          <label className="text-[11px] font-bold text-slate-700">
-                            Logo para fundo escuro (opcional)
-                            <input
-                              type="url"
-                              value={item.logoUrlDark || ''}
-                              onChange={(e) => updateItem('logoUrlDark', e.target.value)}
-                              placeholder="https://... ou /partners/..."
                               className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
                             />
                           </label>
