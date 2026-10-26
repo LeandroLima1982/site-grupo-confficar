@@ -2596,7 +2596,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                           : 'bg-[#fcf9f8] border-[#e8e4e2] hover:border-gold-400'
                       }`}
                     >
-                      <div className={`h-16 w-full flex items-center justify-center ${isDark ? 'rounded-lg bg-white p-2' : ''}`}>
+                      <div className={`h-16 w-full flex items-center justify-center rounded-lg ${isDark ? 'bg-white p-2' : ''}`}>
                         {isSafeLogoUrl(item.logoUrl) ? (
                           <img
                             src={item.logoUrl}
@@ -2605,7 +2605,10 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                             className={`max-h-full max-w-full object-contain transition duration-300 ${isDark ? 'opacity-100' : 'grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100'}`}
                           />
                         ) : (
-                          <span className={`text-center text-lg font-extrabold ${isDark ? 'text-white' : 'text-slate-700'}`}>{item.name}</span>
+                          <div className="flex h-full w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[#1c1b1b] shadow-sm">
+                            <span className="material-symbols-outlined shrink-0 text-[22px] text-gold-700">restaurant</span>
+                            <span className="text-center text-xs sm:text-sm font-extrabold leading-tight">{item.name}</span>
+                          </div>
                         )}
                       </div>
                       <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
