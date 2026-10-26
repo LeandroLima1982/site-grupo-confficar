@@ -10,6 +10,7 @@ import {
   AboutSlideItem,
   AdminSection,
   BannerItem,
+  ClientPartnerItem,
   FleetItem,
   HeroSlideItem,
   InstitutionalContent,
@@ -222,6 +223,7 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
 }) => {
   // Local states for editing forms
   const [heroForm, setHeroForm] = useState<InstitutionalContent>(institutional);
+  const [uploadingClientPartnerId, setUploadingClientPartnerId] = useState<string | null>(null);
 
   // Helper functions for Hero and About slides defaults
   const isDefaultOrUnsplashUrl = (url?: string) => {
@@ -5285,6 +5287,148 @@ export const AdminCMSHub: React.FC<AdminCMSHubProps> = ({
           {/* Section: Conteúdo Geral */}
           {currentSection === 'conteudo' && (
             <div className="space-y-6">
+              <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-5">
+                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                  <div>
+                    <h2 className="text-xl font-bold text-slate-900">Parceiros</h2>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Gerencie os logos e links das empresas parceiras exibidas na página inicial.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setHeroForm((prev) => ({
+                      ...prev,
+                      clientPartners: [...(prev.clientPartners || []), {
+                        id: `client-partner-${Date.now()}`,
+                        name: '',
+                        logoUrl: '',
+                        websiteUrl: '',
+                      }],
+                    }))}
+                    className="bg-[#0A0A0A] hover:bg-[#1A1A1A] text-white font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">add</span>
+                    Adicionar logo
+                  </button>
+                </div>
+
+                {(heroForm.clientPartners || []).length === 0 ? (
+                  <p className="rounded-xl bg-slate-50 border border-dashed border-slate-300 p-5 text-xs text-slate-500 text-center">
+                    Nenhum parceiro cadastrado. Adicione um parceiro para montar a seção no site.
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {(heroForm.clientPartners || []).map((item, index) => {
+                      const updateItem = <K extends keyof ClientPartnerItem,>(field: K, value: ClientPartnerItem[K]) => {
+                        setHeroForm((prev) => ({
+                          ...prev,
+                          clientPartners: (prev.clientPartners || []).map((current, currentIndex) =>
+                            currentIndex === index ? { ...current, [field]: value } : current
+                          ),
+                        }));
+                      };
+
+                      return (
+                        <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.3fr_auto] gap-3 items-end rounded-xl border border-slate-200 bg-slate-50 p-4">
+                          <label className="text-[11px] font-bold text-slate-700">
+                            Nome da empresa
+                            <input
+                              type="text"
+                              value={item.name}
+                              onChange={(e) => updateItem('name', e.target.value)}
+                              placeholder="Ex.: Empresa Exemplo"
+                              className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
+                            />
+                          </label>
+                          <label className="text-[11px] font-bold text-slate-700">
+                            Logo para fundo escuro (opcional)
+                            <input
+                              type="url"
+                              value={item.logoUrlDark || ''}
+                              onChange={(e) => updateItem('logoUrlDark', e.target.value)}
+                              placeholder="https://... ou /partners/..."
+                              className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
+                            />
+                          </label>
+                          <label className="text-[11px] font-bold text-slate-700">
+                            URL do logo
+                            {item.logoUrl && (
+                              <span className="mt-1 mb-2 flex h-12 items-center justify-center rounded-lg border border-slate-200 bg-white p-1">
+                                <img src={item.logoUrl} alt={`Prévia do logo ${item.name || ''}`} className="max-h-10 max-w-full object-contain" />
+                              </span>
+                            )}
+                            <input
+                              type="url"
+                              value={item.logoUrl}
+                              onChange={(e) => updateItem('logoUrl', e.target.value)}
+                              placeholder="https://..."
+                              className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
+                            />
+                            <span className="mt-2 inline-flex items-center rounded-lg bg-slate-200 px-3 py-2 text-[11px] font-bold text-slate-700 hover:bg-slate-300 cursor-pointer">
+                              {uploadingClientPartnerId === item.id ? 'Enviando imagem…' : 'Enviar imagem do computador'}
+                              <input
+                                type="file"
+                                accept="image/*"
+                                disabled={uploadingClientPartnerId === item.id}
+                                onChange={async (e) => {
+                                  const file = e.target.files?.[0];
+                                  e.target.value = '';
+                                  if (!file) return;
+                                  setUploadingClientPartnerId(item.id);
+                                  try {
+                                    const result = await uploadImageToCloudinary(file);
+                                    updateItem('logoUrl', result.url);
+                                    if (!result.isCloudinary) {
+                                      alert('Imagem carregada e compactada. O Cloudinary não está configurado; a imagem será salva junto ao conteúdo do CMS.');
+                                    }
+                                  } catch (error) {
+                                    console.error('Erro ao enviar logo de cliente/parceiro:', error);
+                                    alert('Não foi possível enviar a imagem. Tente novamente.');
+                                  } finally {
+                                    setUploadingClientPartnerId(null);
+                                  }
+                                }}
+                                className="sr-only"
+                              />
+                            </span>
+                          </label>
+                          <label className="text-[11px] font-bold text-slate-700">
+                            Site para abrir ao clicar
+                            <input
+                              type="url"
+                              value={item.websiteUrl}
+                              onChange={(e) => updateItem('websiteUrl', e.target.value)}
+                              placeholder="https://..."
+                              className="mt-1 w-full border border-slate-200 rounded-lg bg-white p-2.5 text-xs font-normal text-slate-900 outline-none focus:border-[#0A0A0A]"
+                            />
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setHeroForm((prev) => ({
+                              ...prev,
+                              clientPartners: (prev.clientPartners || []).filter((_, currentIndex) => currentIndex !== index),
+                            }))}
+                            aria-label={`Remover ${item.name || 'logo'}`}
+                            className="h-10 w-10 rounded-lg border border-rose-200 bg-white text-rose-600 hover:bg-rose-50 flex items-center justify-center cursor-pointer"
+                          >
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => handleSaveHero()}
+                  className="bg-[#0A0A0A] text-white font-semibold text-xs px-6 py-2.5 rounded-xl hover:bg-[#1A1A1A] cursor-pointer"
+                >
+                  Salvar Parceiros
+                </button>
+              </div>
+
               <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6">
                 <h2 className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">Texto Institucional</h2>
                 <div className="space-y-4">

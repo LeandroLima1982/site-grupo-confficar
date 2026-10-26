@@ -60,6 +60,13 @@ function saveToStorage<T>(key: string, value: T) {
   }
 }
 
+function normalizeInstitutionalContent(value: InstitutionalContent): InstitutionalContent {
+  return {
+    ...value,
+    clientPartners: value.clientPartners ?? INITIAL_INSTITUTIONAL.clientPartners,
+  };
+}
+
 export function App() {
   // Navigation & Role states
   const [currentView, setCurrentView] = useState<ViewMode>('public');
@@ -71,7 +78,7 @@ export function App() {
   // Evita o flash do conteúdo padrão antigo na primeira renderização.
   const [logos, setLogos] = useState<SiteLogos>(() => readStorageCache(CACHE_KEYS.logos, INITIAL_LOGOS));
   const [institutional, setInstitutional] = useState<InstitutionalContent>(() =>
-    readStorageCache(CACHE_KEYS.institutional, INITIAL_INSTITUTIONAL)
+    normalizeInstitutionalContent(readStorageCache(CACHE_KEYS.institutional, INITIAL_INSTITUTIONAL))
   );
   const [banners, setBanners] = useState<BannerItem[]>(() => readStorageCache(CACHE_KEYS.banners, INITIAL_BANNERS));
   const [services, setServices] = useState<ServiceItem[]>(() => readStorageCache(CACHE_KEYS.services, INITIAL_SERVICES));
@@ -111,8 +118,9 @@ export function App() {
         saveToStorage(CACHE_KEYS.logos, cloudData.logos);
       }
       if (cloudData.institutional) {
-        setInstitutional(cloudData.institutional);
-        saveToStorage(CACHE_KEYS.institutional, cloudData.institutional);
+        const normalizedInstitutional = normalizeInstitutionalContent(cloudData.institutional);
+        setInstitutional(normalizedInstitutional);
+        saveToStorage(CACHE_KEYS.institutional, normalizedInstitutional);
       }
       if (cloudData.banners) {
         setBanners(cloudData.banners);

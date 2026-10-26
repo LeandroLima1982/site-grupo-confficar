@@ -112,6 +112,14 @@ export interface TestimonialItem {
   destaque?: boolean;
 }
 
+export interface ClientPartnerItem {
+  id: string;
+  name: string;
+  logoUrl: string;
+  logoUrlDark?: string;
+  websiteUrl: string;
+}
+
 export interface AboutSlideItem {
   id: string;
   url: string;
@@ -227,6 +235,7 @@ export interface InstitutionalContent {
   missao: string;
   valores: string[];
   aboutSlides?: AboutSlideItem[];
+  clientPartners?: ClientPartnerItem[];
   serviceWatermark?: ServiceWatermarkConfig;
   telefone?: string;
   whatsappUrl?: string;

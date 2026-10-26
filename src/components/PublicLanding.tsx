@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ASSET_IMAGES } from '../data/initialData';
-import { FleetItem, HeroSlideItem, InstitutionalContent, QuoteForm, SEOSettings, ServiceItem, SiteLogos, TestimonialItem, ViewMode } from '../types';
+import { ClientPartnerItem, FleetItem, HeroSlideItem, InstitutionalContent, QuoteForm, SEOSettings, ServiceItem, SiteLogos, TestimonialItem, ViewMode } from '../types';
 import Switch from './ui/sky-toggle';
 
 interface PublicLandingProps {
@@ -32,6 +32,23 @@ function getServiceImage(serv?: ServiceItem | null): string {
     return 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop';
   }
   return 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200&auto=format&fit=crop';
+}
+
+function isSafeExternalUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' || url.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+function isSafeLogoUrl(value?: string): boolean {
+  return Boolean(value && (
+    isSafeExternalUrl(value) ||
+    (value.startsWith('/') && !value.startsWith('//')) ||
+    value.startsWith('data:image/')
+  ));
 }
 
 export const PublicLanding: React.FC<PublicLandingProps> = ({
@@ -115,12 +132,17 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
     };
   }, [mobileMenuOpen]);
 
+  const hasClientPartners = (institutional.clientPartners || []).some(
+    (item) => item.name.trim() && isSafeExternalUrl(item.websiteUrl)
+  );
+
   // Mobile menu items list with icons and descriptions
   const mobileNavItems = [
     { href: '#cotacao', icon: 'calculate', label: 'Cotação Rápida', desc: 'Simulação instantânea de viagem' },
     { href: '#servicos', icon: 'directions_car', label: 'Nossos Serviços', desc: 'Executivo, Transfer & Blindados' },
     { href: '#tipos-veiculos', icon: 'airport_shuttle', label: 'Tipos de Veículos', desc: 'Sedan, SUV, Vans & Ônibus' },
     { href: '#sobre', icon: 'domain', label: 'Sobre a Confficar', desc: 'Excelência, tradição & segurança' },
+    ...(hasClientPartners ? [{ href: '#clientes-parceiros', icon: 'handshake', label: 'Parceiros', desc: 'Empresas que confiam na Confficar' }] : []),
     { href: '#depoimentos', icon: 'rate_review', label: 'Depoimentos', desc: 'Avaliações de parceiros corporativos' },
     { href: '#contato', icon: 'support_agent', label: 'Contato & Canais', desc: 'Central de atendimento 24 horas' },
   ];
@@ -777,7 +799,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
           </a>
 
           {/* Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-12 text-sm font-semibold">
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold">
             <a
               href="#servicos"
               onClick={(e) => handleAnchorClick(e, '#servicos')}
@@ -823,6 +845,21 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
             >
               Sobre Nós
             </a>
+            {hasClientPartners && <a
+              href="#clientes-parceiros"
+              onClick={(e) => handleAnchorClick(e, '#clientes-parceiros')}
+              className={`transition-colors duration-500 ease-in-out ${
+                isScrolled
+                  ? isDark
+                    ? 'text-slate-300 hover:text-white'
+                    : 'text-[#414750] hover:text-[#0A0A0A]'
+                  : isDark
+                    ? 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] hover:text-[#D4AF37]'
+                    : 'text-[#414750] hover:text-[#0A0A0A]'
+              }`}
+            >
+                  Parceiros
+            </a>}
             <a
               href="#depoimentos"
               onClick={(e) => handleAnchorClick(e, '#depoimentos')}
@@ -2524,6 +2561,63 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
           </div>
         </section>
 
+        {/* Clients and partners */}
+        {hasClientPartners && (
+          <section
+            className={`py-16 md:py-20 transition-colors duration-500 scroll-mt-24 md:scroll-mt-28 ${isDark ? 'bg-slate-900' : 'bg-white'}`}
+            id="clientes-parceiros"
+          >
+            <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+              <div className="text-center mb-12">
+                <p className={`text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isDark ? 'text-gold-400' : 'text-gold-700'}`}>
+                  Confiança que nos move
+                </p>
+                <h2 className={`text-2xl md:text-3xl font-semibold mb-4 ${isDark ? 'text-white' : 'text-[#1c1b1b]'}`}>
+                  Nossos parceiros
+                </h2>
+                <p className={`text-base max-w-2xl mx-auto ${isDark ? 'text-slate-300' : 'text-[#414750]'}`}>
+                  Empresas parceiras que ajudam a levar pessoas e negócios mais longe.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                {(institutional.clientPartners || [])
+                  .filter((item) => item.name.trim() && isSafeExternalUrl(item.websiteUrl))
+                  .map((item: ClientPartnerItem) => (
+                    <a
+                      key={item.id}
+                      href={item.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visitar o site de ${item.name} (abre em nova aba)`}
+                      className={`group min-h-36 md:min-h-40 rounded-2xl border p-5 md:p-7 flex flex-col items-center justify-center gap-4 transition-all hover:-translate-y-1 hover:shadow-lg ${
+                        isDark
+                          ? 'bg-slate-950 border-slate-800 hover:border-gold-500/60'
+                          : 'bg-[#fcf9f8] border-[#e8e4e2] hover:border-gold-400'
+                      }`}
+                    >
+                      <div className="h-16 w-full flex items-center justify-center">
+                        {isSafeLogoUrl(isDark && isSafeLogoUrl(item.logoUrlDark) ? item.logoUrlDark : item.logoUrl) ? (
+                          <img
+                            src={isDark && isSafeLogoUrl(item.logoUrlDark) ? item.logoUrlDark : item.logoUrl}
+                            alt={`Logo ${item.name}`}
+                            loading="lazy"
+                            className="max-h-16 max-w-full object-contain grayscale opacity-75 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                          />
+                        ) : (
+                          <span className={`text-center text-lg font-extrabold ${isDark ? 'text-white' : 'text-slate-700'}`}>{item.name}</span>
+                        )}
+                      </div>
+                      <span className={`text-[10px] font-bold uppercase tracking-[0.16em] ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                        Parceiro
+                      </span>
+                    </a>
+                  ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Testimonials Section */}
         <section className={`py-20 transition-colors duration-500 scroll-mt-24 md:scroll-mt-28 ${isDark ? 'bg-slate-950' : 'bg-[#f6f3f2]'}`} id="depoimentos">
           <div className="max-w-[1280px] mx-auto px-4 md:px-10">
@@ -2722,6 +2816,12 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                   <span>Diferenciais</span>
                 </a>
               </li>
+              {hasClientPartners && <li>
+                <a href="#clientes-parceiros" onClick={(e) => handleAnchorClick(e, '#clientes-parceiros')} className={`transition-colors flex items-center gap-1.5 ${isDark ? 'hover:text-white' : 'hover:text-[#0A0A0A]'}`}>
+                  <span className="material-symbols-outlined text-[14px] opacity-60">chevron_right</span>
+                  <span>Parceiros</span>
+                </a>
+              </li>}
               <li>
                 <a href="#depoimentos" onClick={(e) => handleAnchorClick(e, '#depoimentos')} className={`transition-colors flex items-center gap-1.5 ${isDark ? 'hover:text-white' : 'hover:text-[#0A0A0A]'}`}>
                   <span className="material-symbols-outlined text-[14px] opacity-60">chevron_right</span>
