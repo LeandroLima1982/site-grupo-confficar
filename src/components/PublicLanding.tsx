@@ -2606,8 +2606,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
                           />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[#1c1b1b] shadow-sm">
-                            <span className="material-symbols-outlined shrink-0 text-[22px] text-gold-700">restaurant</span>
-                            <span className="text-center text-xs sm:text-sm font-extrabold leading-tight">{item.name}</span>
+                            <span className="text-center text-sm sm:text-base font-extrabold leading-tight">{item.name}</span>
                           </div>
                         )}
                       </div>
